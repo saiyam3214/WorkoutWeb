@@ -1,0 +1,11 @@
+[
+    {
+        "name":"Pull Ups",
+        "reps":8,
+        "restTime":60,
+        "sets" : [
+            {"id":1,"reps":8,"weight":2},
+        ]
+
+    }
+]
