@@ -1,0 +1,7 @@
+@font-face {
+    font-family: Giest;
+    src: url("./assets/Geist-Regular.ttf");
+}
+*{
+    font-family: Giest;
+}

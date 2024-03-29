@@ -11,7 +11,7 @@ function ExCard({ name, weight, reps, setsCount, restTime ,openRestTimer , setRe
     }
     return (
         <>
-            <div className="ExCard__Wrapper bg-gray-200 h-fit  pt-1  mb-4 rounded ">
+            <div className="ExCard__Wrapper bg-gray-200 h-fit  pt-1 shadow-md  mb-4 rounded ">
                 <h1 className="text-lg font-bold mx-4 mt-2 mb-5">{name}</h1>
                 <div className="Sets bg-gray-100 p-2 rounded">
                     <div className="Row__Titles flex justify-between items-center mx-3 ">

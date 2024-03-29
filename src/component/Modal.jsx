@@ -5,12 +5,11 @@ function Modal({ isHidden, closeModal, Data, setData }) {
     if (isHidden) {
         return null; // Hide the modal when isHidden is true
     }
-
     const ExcerciseRef = useRef({
         name: "",
         restTime: "",
         reps: "",
-        weight: " - ",
+        weight: " -- ",
         setsCount: 1,
     })
     const addNewExcercise = () => {
