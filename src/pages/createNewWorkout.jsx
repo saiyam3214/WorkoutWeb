@@ -7,7 +7,7 @@ import Card from "../component/rowCard";
 import { Link, useParams } from "wouter";
 import RestTimer from "../component/RestTimer";
 
-function CreateNewWorkout({name}) {
+function CreateNewWorkout({ name }) {
     const [workoutName, setWorkoutName] = useState();
     const [IsRestTimerHidden, setIsRestTimerHidden] = useState(true);
     const [isHidden, setIsHidden] = useState(true);
@@ -20,17 +20,18 @@ function CreateNewWorkout({name}) {
     //     }
     // }
     useEffect(() => {
-        if (name == undefined){
+        if (name == undefined) {
             const s = prompt("Enter Workout Name");
             setWorkoutName(s);
-        }else{
+        } else {
             LoadSavedWorkout();
         }
 
     }, [])
     const LoadSavedWorkout = () => {
+        setWorkoutName(name);
         const data = JSON.parse(localStorage.getItem(name))
-        if(data){
+        if (data) {
             setWorkoutData(data)
         }
     }
@@ -38,7 +39,7 @@ function CreateNewWorkout({name}) {
         const saveWorkout = prompt("Want To Save Workout? y/n")
         if (saveWorkout.toLowerCase() !== "n" && workoutData.length != 0) {
             localStorage.setItem(workoutName, JSON.stringify(workoutData));
-        }else{
+        } else {
             alert("Add a excercise")
         }
     }
@@ -73,8 +74,8 @@ function CreateNewWorkout({name}) {
             <RestTimer restTime={restTime} closeRestTimer={handleCloseRestTimer} isHidden={IsRestTimerHidden}></RestTimer>
             <Modal isHidden={isHidden} Data={workoutData} setData={setWorkoutData} closeModal={closeModal} ></Modal>
             <div ref={backgroundRef} className="App">
-                <div className="bg-white p-4">
-                    <div className="flex justify-between items-center mb-4">
+                <div className="bg-white  p-4">
+                    <div className="flex justify-between max-sm:justify-center max-sm-justify-around items-center mb-4">
                         <Link href="/">
                             <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 bg-transparent text-black">
                                 Cancel
@@ -88,19 +89,23 @@ function CreateNewWorkout({name}) {
                             </button>
 
                             <Link href="/">
-                                <button onClick={handleFinish} className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-[#10B981] text-white">
+                                <button onClick={workoutName == undefined ? () => { } : handleFinish} className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-[#10B981] text-white">
                                     {workoutName == undefined ? "End" : "Finish"}
                                 </button>
                             </Link>
                         </div>
                     </div>
-                    {workoutData.length == 0 ? <h1 className="font-medium text-3xl my-[30vh] text-center">Nothing Here...</h1> : <div className="Excercise_Title">
-                        {workoutData?.map((excerciseData) => {
-                            return <ExCard setRestTime={setRestTime} restTime={excerciseData.restTime} name={excerciseData.name} openRestTimer={openRestTimer} reps={excerciseData.reps} setsCount={excerciseData.setsCount} weight={excerciseData.weight}></ExCard>
-                        })}
-                    </div>}
+                    <div className="secondCol">
+                        {workoutData.length == 0 ? <h1 className="font-medium text-3xl my-[30vh] text-center">Nothing Here...</h1> : <div className="Excercise_Title">
+                            {workoutData?.map((excerciseData) => {
+                                return <ExCard setRestTime={setRestTime} restTime={excerciseData.restTime} name={excerciseData.name} openRestTimer={openRestTimer} reps={excerciseData.reps} setsCount={excerciseData.setsCount} weight={excerciseData.weight}></ExCard>
+                            })}
+                        </div>
+                        }
+                    </div>
 
                 </div>
+
 
 
             </div>

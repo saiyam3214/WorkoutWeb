@@ -32,6 +32,9 @@ function Home() {
                     </div>
 
                 </div>
+                <footer class="footer bg-white text-black font-light  py-4 fixed bottom-0 w-full">
+                    <p class="text-center">Made by Saiyam Saini</p>
+                </footer>
             </div>
         </>
     );

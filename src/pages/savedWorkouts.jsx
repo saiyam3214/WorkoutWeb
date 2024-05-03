@@ -11,8 +11,8 @@ function SavedWorkouts() {
     }
 
     const clearStorage = () => {
-        localStorage.clear();
-        window.location.reload();
+        // localStorage.clear();
+        alert("clear stroafe comes soon")
     }
     useEffect(() => {
         handleLocalStorage();
